@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .my-div {width: 25px; height: 25px;background-color:red; margin:1px;}
+      </style>
+     
+</head>
+
+<body>
+
+    <h1>Excersise 2</h1>
+
+    <div id="outer">
+
+<div id="div1" class="my-div"></div>
+
+<div id="div2" class="my-div"></div>
+
+<div id="div3" class="my-div"></div>
+
+<div id="div4" class="my-div"></div>
+
+<div id="div5" class="my-div"></div>
+
+<div id="div6" class="my-div"></div>
+
+<div id="div7" class="my-div"></div>
+
+<div id="div8" class="my-div"></div>
+
+<div id="div9" class="my-div"></div>
+
+<div id="div10" class="my-div"></div>
+
+</div>
+
+<h3 id="hi"></h3>
+
+<div><a href="index.html">back</a></div>
+
+<script>
+document.getElementById("outer").onclick = (evt) => {
+    const id = evt.target.id
+    document.getElementById("hi").innerText = id
+}
+
+	//	function handleClick(id) {
+	//		console.log("Hi from " + id);
+	//	}
+  </script>
+
+</body>
+</html>

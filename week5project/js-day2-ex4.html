@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th><th>Year</th><th id="header-make"><a href="#">Make</a></th><th>Model</th><th>Price</th>
+        </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <div>
+        <input id="filter-price">
+        <button id="price-btn">Filter by price lower than</button>
+        <button id="clear-btn">Clear filter</button>
+    </div>
+
+    <div><a href="index.html">back</a></div>
+
+<script>
+
+    const cars = [
+  { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
+  { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+  { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+  { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+  { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+];
+
+function makeTable(carsToTable){
+    const carTable = carsToTable.map(car => 
+   `<tr><td>${car.id}</td><td>${car.year}</td><td>${car.make}</td><td>${car.model}</td><td>${car.price}</td></tr>`)
+    .join("\n") 
+        document.getElementById("tbody").innerHTML = carTable;
+}
+
+makeTable(cars)
+
+
+document.getElementById("price-btn").onclick = () => {
+    const pricef = document.getElementById("filter-price").value
+const sortedPrice = cars.filter(car=>car.price < pricef)
+    makeTable(sortedPrice)
+}
+
+document.getElementById("clear-btn").onclick = () => {
+makeTable(cars)
+}
+
+let sortOrderMake = 1
+        document.getElementById("header-make").onclick = function () {
+            const sortedCars = cars.sort((a, b) => {
+                let sortResult = 0
+                if (a.make < b.make) sortResult = -1
+                if (a.make > b.make) sortResult = 1
+                sortResult *= sortOrderMake
+                return sortResult
+            })
+            sortOrderMake *= -1
+            makeTable(sortedCars)
+        }
+
+</script>
+
+</body>
+</html>

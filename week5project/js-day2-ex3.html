@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Excersise 3</h1>
+
+    <ul id="myList"></ul>
+    <button id="getList">Load list</button>
+
+<form>
+    <input id="input" type="text">
+    <button id="addName">Add name</button>
+    <button id="removeFirst">Remove first name</button>
+    <button id="removeLast">Remove last name</button>
+</form>
+
+<div><a href="index.html">back</a></div>
+
+<script>
+   
+    const names = ["Lars", "Peter", "Jan", "Lise", "Janne"]
+    function makeList() {
+        const lis = names.map(n => `<li>${encode(n)}</li>`).join("")
+        document.getElementById("myList").innerHTML = lis
+    }
+    document.getElementById("getList").onclick = ()=>makeList()
+
+    
+document.getElementById("addName").onclick = (evt) => {
+    evt.preventDefault()
+    const name = document.getElementById("input").value
+    names.push(encode(name))
+    makeList()
+}
+
+document.getElementById("removeFirst").onclick = (evt) => {
+    evt.preventDefault()
+    names.shift()
+    makeList()
+}
+
+document.getElementById("removeLast").onclick = (evt) => {
+    evt.preventDefault()
+    names.pop()
+    makeList()
+}
+
+    function encode(str) {
+        str = str.replace(/&/g, "&amp;");
+        str = str.replace(/>/g, "&gt;");
+        str = str.replace(/</g, "&lt;");
+        str = str.replace(/"/g, "&quot;");
+        str = str.replace(/'/g, "&#039;");
+        return str;
+    }
+</script>
+
+</body>
+</html>
